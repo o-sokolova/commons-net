@@ -1069,7 +1069,7 @@ class Telnet extends SocketClient
                 _output_.flush();
             }
             aytMonitor.wait(timeout);
-            if (aytFlag == false)
+            if (!aytFlag)
             {
                 retValue = false;
                 aytFlag = true;

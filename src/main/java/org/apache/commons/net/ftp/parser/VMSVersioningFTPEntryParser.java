@@ -135,10 +135,10 @@ public class VMSVersioningFTPEntryParser extends VMSFTPEntryParser
                 result = _preparse_matcher_.toMatchResult();
                 final String name = result.group(1);
                 final String version = result.group(2);
-                final Integer nv = Integer.valueOf(version);
+                final int nv = Integer.parseInt(version);
                 final Integer existing = existingEntries.get(name);
                 if (null != existing) {
-                    if (nv.intValue() < existing.intValue()) {
+                    if (nv < existing.intValue()) {
                         iter.remove(); // removes older version from original list.
                     }
                 }
