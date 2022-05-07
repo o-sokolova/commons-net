@@ -19,7 +19,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh('mkdir commons-net; mv ./* commons-net || true')
+                    sh('mkdir commons-net; cp ./* commons-net || true')
                     sh('docker build --no-cache -t commons-net-app:1 -f ./Dockerfile .')
                     sh('docker run -d -t --name commons-net-app commons-net-app:1')
                 }
