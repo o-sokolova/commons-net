@@ -25,13 +25,13 @@ pipeline {
                 }
             }
         }
-        stage('Run tests') {
-            steps {
-                script {
-//                    sh('docker exec commons-net-app bash -c \'cd commons-net; mvn test\'')
-                }
-            }
-        }
+//        stage('Run tests') {
+//            steps {
+//                script {
+////                    sh('docker exec commons-net-app bash -c \'cd commons-net; mvn test\'')
+//                }
+//            }
+//        }
 //        stage('Form coverage report') {
 //            steps {
 //                script {
