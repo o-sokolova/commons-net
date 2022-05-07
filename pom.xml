@@ -19,7 +19,7 @@
 -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.apache.commons</groupId>
@@ -31,11 +31,11 @@
     <artifactId>commons-net</artifactId>
     <version>3.9.0-SNAPSHOT</version>
     <name>Apache Commons Net</name>
-    <!-- N.B. the description content is deliberately not indented ! to improve the layout of the Release Notes generated 
+    <!-- N.B. the description content is deliberately not indented ! to improve the layout of the Release Notes generated
         by mvn changes:announcement-generate -->
     <description>
-Apache Commons Net library contains a collection of network utilities and protocol implementations.
-Supported protocols include: Echo, Finger, FTP, NNTP, NTP, POP3(S), SMTP(S), Telnet, Whois
+        Apache Commons Net library contains a collection of network utilities and protocol implementations.
+        Supported protocols include: Echo, Finger, FTP, NNTP, NTP, POP3(S), SMTP(S), Telnet, Whois
     </description>
     <url>https://commons.apache.org/proper/commons-net/</url>
     <inceptionYear>2001</inceptionYear>
@@ -189,8 +189,8 @@ Supported protocols include: Echo, Finger, FTP, NNTP, NTP, POP3(S), SMTP(S), Tel
                         <exclude>**/POP3*Test.java</exclude>
                     </excludes>
                     <environmentVariables>
-                    <TRACE_CALLS>${commons.net.trace_calls}</TRACE_CALLS>
-                    <ADD_LISTENER>${commons.net.add_listener}</ADD_LISTENER>
+                        <TRACE_CALLS>${commons.net.trace_calls}</TRACE_CALLS>
+                        <ADD_LISTENER>${commons.net.add_listener}</ADD_LISTENER>
                     </environmentVariables>
                 </configuration>
             </plugin>
@@ -220,19 +220,19 @@ Supported protocols include: Echo, Finger, FTP, NNTP, NTP, POP3(S), SMTP(S), Tel
                                         <attribute name="Specification-Title" value="${project.name}" />
                                         <attribute name="Implementation-Title" value="${project.name}" />
                                         <attribute name="Implementation-Vendor"
-                                            value="${project.organization.name}" />
+                                                   value="${project.organization.name}" />
                                         <attribute name="Implementation-Version" value="${project.version}" />
                                         <attribute name="Implementation-Vendor-Id" value="org.apache" />
                                         <attribute name="Implementation-Build" value="${implementation.build}" />
                                         <attribute name="X-Compile-Source-JDK"
-                                            value="${maven.compiler.source}" />
+                                                   value="${maven.compiler.source}" />
                                         <attribute name="X-Compile-Target-JDK"
-                                            value="${maven.compiler.target}" />
+                                                   value="${maven.compiler.target}" />
                                     </manifest>
                                     <fileset dir="target/classes"
-                                        includes="org/apache/commons/net/ftp/**,org/apache/commons/net/*,org/apache/commons/net/io/*,org/apache/commons/net/util/*" />
+                                             includes="org/apache/commons/net/ftp/**,org/apache/commons/net/*,org/apache/commons/net/io/*,org/apache/commons/net/util/*" />
                                 </jar>
-                                <!-- Create the binary examples jar, which will be added to the binary zip/tgz, but not deployed 
+                                <!-- Create the binary examples jar, which will be added to the binary zip/tgz, but not deployed
                                     independently to Maven -->
                                 <jar destfile="target/commons-net-examples-${project.version}.jar">
                                     <metainf dir="${basedir}" includes="NOTICE.txt,LICENSE.txt" />
@@ -241,20 +241,20 @@ Supported protocols include: Echo, Finger, FTP, NNTP, NTP, POP3(S), SMTP(S), Tel
                                         <attribute name="Specification-Title" value="${project.name}" />
                                         <attribute name="Implementation-Title" value="${project.name}" />
                                         <attribute name="Implementation-Vendor"
-                                            value="${project.organization.name}" />
+                                                   value="${project.organization.name}" />
                                         <attribute name="Implementation-Version" value="${project.version}" />
                                         <attribute name="Implementation-Vendor-Id" value="org.apache" />
                                         <attribute name="Implementation-Build" value="${implementation.build}" />
                                         <attribute name="X-Compile-Source-JDK"
-                                            value="${maven.compiler.source}" />
+                                                   value="${maven.compiler.source}" />
                                         <attribute name="X-Compile-Target-JDK"
-                                            value="${maven.compiler.target}" />
+                                                   value="${maven.compiler.target}" />
                                         <!-- Helper application -->
                                         <attribute name="Main-Class"
-                                            value="org/apache/commons/net/examples/Main" />
+                                                   value="org/apache/commons/net/examples/Main" />
                                         <!-- Allow java -jar examples.jar to work -->
                                         <attribute name="Class-Path"
-                                            value="commons-net-${project.version}.jar" />
+                                                   value="commons-net-${project.version}.jar" />
                                     </manifest>
                                     <fileset dir="target/classes" includes="**/examples/**" />
                                 </jar>
@@ -266,7 +266,7 @@ Supported protocols include: Echo, Finger, FTP, NNTP, NTP, POP3(S), SMTP(S), Tel
                     </execution>
                 </executions>
             </plugin>
-            <!-- Attaches the commons-net-ftp and examples JARs to the Maven lifecycle to ensure they will be signed and 
+            <!-- Attaches the commons-net-ftp and examples JARs to the Maven lifecycle to ensure they will be signed and
                 deployed as normal -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -381,6 +381,33 @@ Supported protocols include: Echo, Finger, FTP, NNTP, NTP, POP3(S), SMTP(S), Tel
                     <enableRulesSummary>false</enableRulesSummary>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.7.6</version>
+                <configuration>
+                    <targetClasses>
+                        <param>org.apache.commons.net.ntp.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>org.apache.commons.net.ntp.*</param>
+                    </targetTests>
+                    <timeoutConstant>
+                        2000
+                    </timeoutConstant>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.8</version>
+                <configuration>
+                    <destFile>build/jacoco/jacocoTest.exec</destFile>
+                </configuration>
+            </plugin>
+
         </plugins>
 
     </build>
@@ -488,19 +515,19 @@ Supported protocols include: Echo, Finger, FTP, NNTP, NTP, POP3(S), SMTP(S), Tel
             <organization />
         </developer>
         <developer>
-          <id>ggregory</id>
-          <name>Gary Gregory</name>
-          <email>ggregory at apache.org</email>
-          <url>https://www.garygregory.com</url>
-          <organization>The Apache Software Foundation</organization>
-          <organizationUrl>https://www.apache.org/</organizationUrl>      
-          <roles>
-            <role>PMC Member</role>
-          </roles>
-          <timezone>America/New_York</timezone>
-          <properties>
-            <picUrl>https://people.apache.org/~ggregory/img/garydgregory80.png</picUrl>
-          </properties>
+            <id>ggregory</id>
+            <name>Gary Gregory</name>
+            <email>ggregory at apache.org</email>
+            <url>https://www.garygregory.com</url>
+            <organization>The Apache Software Foundation</organization>
+            <organizationUrl>https://www.apache.org/</organizationUrl>
+            <roles>
+                <role>PMC Member</role>
+            </roles>
+            <timezone>America/New_York</timezone>
+            <properties>
+                <picUrl>https://people.apache.org/~ggregory/img/garydgregory80.png</picUrl>
+            </properties>
         </developer>
     </developers>
 
