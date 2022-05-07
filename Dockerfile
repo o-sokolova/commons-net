@@ -14,4 +14,5 @@
 #   limitations under the License.
 
 FROM maven:3.8-jdk-11
-COPY ./commons-net/ ./commons-net
+CMD mkdir commons-net
+COPY ./ ./commons-net
