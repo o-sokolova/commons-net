@@ -19,19 +19,19 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    sh('mkdir commons-net; mv ./* commons-net || true')
                     sh('docker build --no-cache -t commons-net-app:1 -f ./Dockerfile .')
                     sh('docker run -d -t --name commons-net-app commons-net-app:1')
-//                    sh('docker exec commons-net-app bash -c \'mkdir commons-net; mv ./* commons-net || true\'')
                 }
             }
         }
-//        stage('Run tests') {
-//            steps {
-//                script {
-////                    sh('docker exec commons-net-app bash -c \'cd commons-net; mvn test\'')
-//                }
-//            }
-//        }
+        stage('Run tests') {
+            steps {
+                script {
+                    sh('docker exec commons-net-app bash -c \'cd commons-net; mvn test\'')
+                }
+            }
+        }
 //        stage('Form coverage report') {
 //            steps {
 //                script {
