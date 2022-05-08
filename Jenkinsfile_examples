@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     sh('docker build --no-cache -t commons-net-app:1 -f ./Dockerfile .')
-                    sh('docker run -d -t --name commons-net-app commons-net-app:1')
+                    sh('docker run -d -t --name commons-net-app -e JAVA_OPTS=\'-Xmx2g -Xms2g\' commons-net-app:1')
                 }
             }
         }
