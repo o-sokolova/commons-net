@@ -14,5 +14,5 @@
 #   limitations under the License.
 
 FROM maven:3.8-jdk-11
-COPY ./ ./commons-cli/
+COPY ./ ./commons-net/
 COPY ./ ./
