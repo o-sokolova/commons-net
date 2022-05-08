@@ -34,7 +34,7 @@ pipeline {
         stage('Form coverage report') {
             steps {
                 script {
-                    sh('docker cp commons-net-app:build/jacoco/jacocoTest.exec ./')
+                    sh('docker cp commons-net-app:commons-net/build/jacoco/jacocoTest.exec ./')
                     sh('java -jar jacoco-0.8.7/lib/jacococli.jar report jacocoTest.exec --classfiles build/classes --csv ${PWD##*/}.report')
                 }
             }
