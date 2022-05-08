@@ -24,28 +24,28 @@ pipeline {
                 }
             }
         }
-//        stage('Run tests') {
-//            steps {
-//                script {
-//                    sh('docker exec commons-net-app bash -c \'cd commons-net; mvn test\'')
-//                }
-//            }
-//        }
-//        stage('Form coverage report') {
-//            steps {
-//                script {
-//                    sh('docker cp url-shortener:build/jacoco/jacocoTest.exec ./')
-//                    sh('java -jar jacoco-0.8.7/lib/jacococli.jar report jacocoTest.exec --classfiles build/classes --csv ${PWD##*/}.report')
-//                }
-//            }
-//        }
-//        stage('Clean up.') {
-//            steps {
-//                script {
-//                    sh('docker stop url-shortener')
-//                    sh('docker rm url-shortener')
-//                }
-//            }
-//        }
+        stage('Run tests') {
+            steps {
+                script {
+                    sh('docker exec commons-net-app bash -c \'cd commons-net; mvn compile; mvn test;\'')
+                }
+            }
+        }
+        stage('Form coverage report') {
+            steps {
+                script {
+                    sh('docker cp commons-net-app:build/jacoco/jacocoTest.exec ./')
+                    sh('java -jar jacoco-0.8.7/lib/jacococli.jar report jacocoTest.exec --classfiles build/classes --csv ${PWD##*/}.report')
+                }
+            }
+        }
+        stage('Clean up.') {
+            steps {
+                script {
+                    sh('docker stop commons-net-app')
+                    sh('docker rm commons-net-app')
+                }
+            }
+        }
     }
 }
