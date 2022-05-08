@@ -69,7 +69,7 @@ public abstract class SocketClient
             ServerSocketFactory.getDefault();
 
     /** The socket's connect timeout (0 = infinite timeout) */
-    private static final int DEFAULT_CONNECT_TIMEOUT = 60000;
+    private static final int DEFAULT_CONNECT_TIMEOUT = 50000;
 
     /**
      * A ProtocolCommandSupport object used to manage the registering of
