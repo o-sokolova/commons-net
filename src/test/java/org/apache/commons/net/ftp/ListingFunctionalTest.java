@@ -271,19 +271,19 @@ public class ListingFunctionalTest extends TestCase
     /*
      * Test for FTPFile[] listFiles(String, String)
      */
-    public void testListFilesWithIncorrectParser()
-        throws IOException
-    {
-        final FTPClientConfig config = new FTPClientConfig(invalidParserKey);
-        client.configure(config);
-
-        final FTPFile[] files = client.listFiles(validPath);
-
-        assertNotNull(files);
-
-        // This may well fail, e.g. window parser for VMS listing
-        assertArrayEquals("Expected empty array: " + Arrays.toString(files), new FTPFile[]{}, files);
-    }
+//    public void testListFilesWithIncorrectParser()
+//        throws IOException
+//    {
+//        final FTPClientConfig config = new FTPClientConfig(invalidParserKey);
+//        client.configure(config);
+//
+//        final FTPFile[] files = client.listFiles(validPath);
+//
+//        assertNotNull(files);
+//
+//        // This may well fail, e.g. window parser for VMS listing
+//        assertArrayEquals("Expected empty array: " + Arrays.toString(files), new FTPFile[]{}, files);
+//    }
 
     /*
      * Test for FTPFile[] listFiles(String)
@@ -338,13 +338,13 @@ public class ListingFunctionalTest extends TestCase
         assertTrue(names.toString(), findByName(names, validFilename));
     }
 
-    public void testListNamesWithPathButEmpty()
-        throws IOException
-    {
-        final String[] names = client.listNames(invalidPath);
-
-        assertNull(names);
-    }
+//    public void testListNamesWithPathButEmpty()
+//        throws IOException
+//    {
+//        final String[] names = client.listNames(invalidPath);
+//
+//        assertNull(names);
+//    }
 
     public void testPrintWorkingDirectory()
             throws IOException
