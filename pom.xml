@@ -386,13 +386,23 @@
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-maven</artifactId>
                 <version>1.7.6</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.pitest.plugins</groupId>
+                        <artifactId>pitest-export-plugin</artifactId>
+                        <version>0.1-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
                 <configuration>
                     <targetClasses>
-                        <param>org.apache.commons.net.ntp.*</param>
+                        <param>org.apache.commons.net.util.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>org.apache.commons.net.ntp.*</param>
+                        <param>org.apache.commons.net.*</param>
                     </targetTests>
+                    <exportLineCoverage>
+                        true
+                    </exportLineCoverage>
                     <timeoutConstant>
                         2000
                     </timeoutConstant>
