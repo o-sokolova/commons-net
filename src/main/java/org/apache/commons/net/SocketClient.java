@@ -1,12 +1,3 @@
-/* LittleDarwin generated order-1 mutant
-mutant type: RelationalOperatorReplacement
-----> before:         if (localAddr != null) {
-----> after:         if (localAddr == null) {
-----> line number in original file: 151
-----> mutated node: 2133
-
-*/
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -148,7 +139,7 @@ public abstract class SocketClient
 
     // helper method to allow code to be shared with connect(String,...) methods
     private void _connect(final InetAddress host, final int port, final InetAddress localAddr, final int localPort)
-            throws SocketException, IOException
+        throws SocketException, IOException
     {
         _socket_ = _socketFactory_.createSocket();
         if (receiveBufferSize != -1) {
@@ -157,7 +148,7 @@ public abstract class SocketClient
         if (sendBufferSize != -1) {
             _socket_.setSendBufferSize(sendBufferSize);
         }
-        if (localAddr == null) {
+        if (localAddr != null) {
             _socket_.bind(new InetSocketAddress(localAddr, localPort));
         }
         _socket_.connect(new InetSocketAddress(host, port), connectTimeout);
@@ -262,7 +253,7 @@ public abstract class SocketClient
      *  derived from it.
      */
     public void connect(final InetAddress host, final int port)
-            throws SocketException, IOException
+    throws SocketException, IOException
     {
         _hostname_ = null;
         _connect(host, port, null, -1);
@@ -286,7 +277,7 @@ public abstract class SocketClient
      */
     public void connect(final InetAddress host, final int port,
                         final InetAddress localAddr, final int localPort)
-            throws SocketException, IOException
+    throws SocketException, IOException
     {
         _hostname_ = null;
         _connect(host, port, localAddr, localPort);
@@ -326,7 +317,7 @@ public abstract class SocketClient
      * @throws java.net.UnknownHostException If the hostname cannot be resolved.
      */
     public void connect(final String hostname, final int port)
-            throws SocketException, IOException
+    throws SocketException, IOException
     {
         _hostname_ = hostname;
         _connect(InetAddress.getByName(hostname), port, null, -1);
@@ -350,10 +341,10 @@ public abstract class SocketClient
      */
     public void connect(final String hostname, final int port,
                         final InetAddress localAddr, final int localPort)
-            throws SocketException, IOException
+    throws SocketException, IOException
     {
         _hostname_ = hostname;
-        _connect(InetAddress.getByName(hostname), port, localAddr, localPort);
+       _connect(InetAddress.getByName(hostname), port, localAddr, localPort);
     }
     /**
      * Create the CommandSupport instance if required
