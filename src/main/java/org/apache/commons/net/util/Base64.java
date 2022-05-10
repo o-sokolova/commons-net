@@ -1,3 +1,12 @@
+/* LittleDarwin generated order-1 mutant
+mutant type: ConditionalOperatorDeletion
+----> before:             if (!isBase64(element) && !isWhiteSpace(element)) {
+----> after:             if (!isBase64(element) &&  isWhiteSpace(element)) {
+----> line number in original file: 399
+----> mutated node: 5848
+
+*/
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -247,7 +256,7 @@ public class Base64 {
      * @since 1.4
      */
     public static byte[] encodeBase64(final byte[] binaryData, final boolean isChunked, final boolean urlSafe,
-            final int maxResultSize) {
+                                      final int maxResultSize) {
         if (binaryData == null || binaryData.length == 0) {
             return binaryData;
         }
@@ -396,7 +405,7 @@ public class Base64 {
      */
     public static boolean isArrayByteBase64(final byte[] arrayOctet) {
         for (final byte element : arrayOctet) {
-            if (!isBase64(element) && !isWhiteSpace(element)) {
+            if (!isBase64(element) &&  isWhiteSpace(element)) {
                 return false;
             }
         }
