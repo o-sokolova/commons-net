@@ -1,12 +1,3 @@
-/* LittleDarwin generated order-1 mutant
-mutant type: RelationalOperatorReplacement
-----> before:                 if (listener != null) {
-----> after:                 if (listener == null) {
-----> line number in original file: 375
-----> mutated node: 1150
-
-*/
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -99,7 +90,7 @@ public final class Util
      * @throws CopyStreamException on error
      */
     public static long copyReader(final Reader source, final Writer dest)
-            throws CopyStreamException
+    throws CopyStreamException
     {
         return copyReader(source, dest, DEFAULT_COPY_BUFFER_SIZE);
     }
@@ -127,11 +118,11 @@ public final class Util
      *            getIOException() methods.
      */
     public static long copyReader(final Reader source, final Writer dest,
-                                  final int bufferSize)
-            throws CopyStreamException
+                                        final int bufferSize)
+    throws CopyStreamException
     {
         return copyReader(source, dest, bufferSize,
-                CopyStreamEvent.UNKNOWN_STREAM_SIZE, null);
+                          CopyStreamEvent.UNKNOWN_STREAM_SIZE, null);
     }
 
 
@@ -169,9 +160,9 @@ public final class Util
      *            getIOException() methods.
      */
     public static long copyReader(final Reader source, final Writer dest,
-                                  final int bufferSize, final long streamSize,
-                                  final CopyStreamListener listener)
-            throws CopyStreamException
+                                        final int bufferSize, final long streamSize,
+                                        final CopyStreamListener listener)
+    throws CopyStreamException
     {
         int numChars;
         long total = 0;
@@ -209,7 +200,7 @@ public final class Util
         catch (final IOException e)
         {
             throw new CopyStreamException("IOException caught while copying.",
-                    total, e);
+                                          total, e);
         }
 
         return total;
@@ -224,7 +215,7 @@ public final class Util
      * @throws CopyStreamException on error
      */
     public static long copyStream(final InputStream source, final OutputStream dest)
-            throws CopyStreamException
+    throws CopyStreamException
     {
         return copyStream(source, dest, DEFAULT_COPY_BUFFER_SIZE);
     }
@@ -253,11 +244,11 @@ public final class Util
      *            getIOException() methods.
      */
     public static long copyStream(final InputStream source, final OutputStream dest,
-                                  final int bufferSize)
-            throws CopyStreamException
+                                        final int bufferSize)
+    throws CopyStreamException
     {
         return copyStream(source, dest, bufferSize,
-                CopyStreamEvent.UNKNOWN_STREAM_SIZE, null);
+                          CopyStreamEvent.UNKNOWN_STREAM_SIZE, null);
     }
 
 
@@ -296,12 +287,12 @@ public final class Util
      *            getIOException() methods.
      */
     public static long copyStream(final InputStream source, final OutputStream dest,
-                                  final int bufferSize, final long streamSize,
-                                  final CopyStreamListener listener)
-            throws CopyStreamException
+                                        final int bufferSize, final long streamSize,
+                                        final CopyStreamListener listener)
+    throws CopyStreamException
     {
-        return copyStream(source, dest, bufferSize, streamSize, listener,
-                true);
+      return copyStream(source, dest, bufferSize, streamSize, listener,
+                        true);
     }
 
     /**
@@ -343,10 +334,10 @@ public final class Util
      *            getIOException() methods.
      */
     public static long copyStream(final InputStream source, final OutputStream dest,
-                                  final int bufferSize, final long streamSize,
-                                  final CopyStreamListener listener,
-                                  final boolean flush)
-            throws CopyStreamException
+                                        final int bufferSize, final long streamSize,
+                                        final CopyStreamListener listener,
+                                        final boolean flush)
+    throws CopyStreamException
     {
         int numBytes;
         long total = 0;
@@ -381,7 +372,7 @@ public final class Util
                     dest.flush();
                 }
                 total += numBytes;
-                if (listener == null) {
+                if (listener != null) {
                     listener.bytesTransferred(total, numBytes, streamSize);
                 }
             }
@@ -389,7 +380,7 @@ public final class Util
         catch (final IOException e)
         {
             throw new CopyStreamException("IOException caught while copying.",
-                    total, e);
+                                          total, e);
         }
 
         return total;
