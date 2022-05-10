@@ -1,3 +1,12 @@
+/* LittleDarwin generated order-1 mutant
+mutant type: ArithmeticOperatorReplacementBinary
+----> before:     static final int PACKET_SIZE = TFTPPacket.SEGMENT_SIZE + 4;
+----> after:     static final int PACKET_SIZE = TFTPPacket.SEGMENT_SIZE - 4;
+----> line number in original file: 90
+----> mutated node: 576
+
+*/
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -87,7 +96,7 @@ public class TFTP extends DatagramSocketClient
      * The size to use for TFTP packet buffers.  Its 4 plus the
      * TFTPPacket.SEGMENT_SIZE, i.e. 516.
      */
-    static final int PACKET_SIZE = TFTPPacket.SEGMENT_SIZE + 4;
+    static final int PACKET_SIZE = TFTPPacket.SEGMENT_SIZE - 4;
 
     /**
      * Returns the TFTP string representation of a TFTP transfer mode.
@@ -143,10 +152,10 @@ public class TFTP extends DatagramSocketClient
     {
         receiveBuffer = new byte[PACKET_SIZE];
         receiveDatagram =
-            new DatagramPacket(receiveBuffer, receiveBuffer.length);
+                new DatagramPacket(receiveBuffer, receiveBuffer.length);
         sendBuffer = new byte[PACKET_SIZE];
         sendDatagram =
-            new DatagramPacket(sendBuffer, sendBuffer.length);
+                new DatagramPacket(sendBuffer, sendBuffer.length);
     }
 
 
@@ -178,7 +187,7 @@ public class TFTP extends DatagramSocketClient
      * @throws TFTPPacketException If an invalid TFTP packet is received.
      */
     public final TFTPPacket bufferedReceive() throws IOException,
-                InterruptedIOException, SocketException, TFTPPacketException
+            InterruptedIOException, SocketException, TFTPPacketException
     {
         receiveDatagram.setData(receiveBuffer);
         receiveDatagram.setLength(receiveBuffer.length);
@@ -273,7 +282,7 @@ public class TFTP extends DatagramSocketClient
      * @throws TFTPPacketException If an invalid TFTP packet is received.
      */
     public final TFTPPacket receive() throws IOException, InterruptedIOException,
-                SocketException, TFTPPacketException
+            SocketException, TFTPPacketException
     {
         final DatagramPacket packet;
 
