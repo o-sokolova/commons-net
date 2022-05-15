@@ -1,3 +1,4 @@
+
 /* LittleDarwin generated order-1 mutant
 mutant type: ConditionalOperatorReplacement
 ----> before:         return stateIsWill(option) && requestedWill(option);
