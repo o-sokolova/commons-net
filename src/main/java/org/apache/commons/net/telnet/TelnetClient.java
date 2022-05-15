@@ -1,3 +1,12 @@
+/* LittleDarwin generated order-1 mutant
+mutant type: ConditionalOperatorReplacement
+----> before:         return stateIsWill(option) && requestedWill(option);
+----> after:         return stateIsWill(option) || requestedWill(option);
+----> line number in original file: 221
+----> mutated node: 871
+
+*/
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -90,9 +99,9 @@ public class TelnetClient extends Telnet
      */
     public TelnetClient(final String termtype, final int maxSubnegotiationLength)
     {
-    /* TERMINAL-TYPE option (start)*/
+        /* TERMINAL-TYPE option (start)*/
         super(termtype);
-    /* TERMINAL-TYPE option (end)*/
+        /* TERMINAL-TYPE option (end)*/
         this.input = null;
         this.output = null;
         this.maxSubnegotiationLength = maxSubnegotiationLength;
@@ -131,7 +140,7 @@ public class TelnetClient extends Telnet
      */
     @Override
     public void addOptionHandler(final TelnetOptionHandler opthand)
-    throws InvalidTelnetOptionException, IOException
+            throws InvalidTelnetOptionException, IOException
     {
         super.addOptionHandler(opthand);
     }
@@ -159,7 +168,7 @@ public class TelnetClient extends Telnet
      */
     @Override
     public void deleteOptionHandler(final int optcode)
-    throws InvalidTelnetOptionException, IOException
+            throws InvalidTelnetOptionException, IOException
     {
         super.deleteOptionHandler(optcode);
     }
@@ -218,7 +227,7 @@ public class TelnetClient extends Telnet
     public boolean getLocalOptionState(final int option)
     {
         /* BUG (option active when not already acknowledged) (start)*/
-        return stateIsWill(option) && requestedWill(option);
+        return stateIsWill(option) || requestedWill(option);
         /* BUG (option active when not already acknowledged) (end)*/
     }
 
@@ -338,7 +347,7 @@ public class TelnetClient extends Telnet
      * @throws IOException on error
      */
     public boolean sendAYT(final long timeout)
-    throws IOException, IllegalArgumentException, InterruptedException
+            throws IOException, IllegalArgumentException, InterruptedException
     {
         return _sendAYT(timeout);
     }
@@ -359,7 +368,7 @@ public class TelnetClient extends Telnet
      * @since 3.0
      */
     public void sendCommand(final byte command)
-    throws IOException, IllegalArgumentException
+            throws IOException, IllegalArgumentException
     {
         _sendCommand(command);
     }
@@ -382,7 +391,7 @@ public class TelnetClient extends Telnet
      * @since 3.0
      */
     public void sendSubnegotiation(final int[] message)
-    throws IOException, IllegalArgumentException
+            throws IOException, IllegalArgumentException
     {
         if (message.length < 1) {
             throw new IllegalArgumentException("zero length message");
