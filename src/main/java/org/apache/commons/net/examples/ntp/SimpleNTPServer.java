@@ -1,12 +1,3 @@
-/* LittleDarwin generated order-1 mutant
-mutant type: ConditionalOperatorDeletion
-----> before:         if (!started)
-----> after:         if ( started)
-----> line number in original file: 210
-----> mutated node: 573
-
-*/
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -216,7 +207,7 @@ public class SimpleNTPServer implements Runnable {
         {
             connect();
         }
-        if ( started)
+        if (!started)
         {
             started = true;
             new Thread(this).start();
@@ -236,6 +227,5 @@ public class SimpleNTPServer implements Runnable {
         }
         started = false;
     }
-
 
 }
