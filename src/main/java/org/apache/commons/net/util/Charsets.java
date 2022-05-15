@@ -1,3 +1,12 @@
+/* LittleDarwin generated order-1 mutant
+mutant type: RelationalOperatorReplacement
+----> before:         return charsetName == null ? Charset.defaultCharset() : Charset.forName(charsetName);
+----> after:         return charsetName != null ? Charset.defaultCharset() : Charset.forName(charsetName);
+----> line number in original file: 38
+----> mutated node: 111
+
+*/
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -35,7 +44,7 @@ public class Charsets {
      * @return A charset object for the named charset
      */
     public static Charset toCharset(final String charsetName) {
-        return charsetName == null ? Charset.defaultCharset() : Charset.forName(charsetName);
+        return charsetName != null ? Charset.defaultCharset() : Charset.forName(charsetName);
     }
 
     /**
