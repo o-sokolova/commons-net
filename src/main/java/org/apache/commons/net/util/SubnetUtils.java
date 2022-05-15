@@ -1,3 +1,12 @@
+/* LittleDarwin generated order-1 mutant
+mutant type: RelationalOperatorReplacement
+----> before:             for (int j = 3; j >= 0; --j) {
+----> after:             for (int j = 3; j < 0; --j) {
+----> line number in original file: 197
+----> mutated node: 1949
+
+*/
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -42,8 +51,8 @@ public class SubnetUtils {
         private long broadcastLong(){ return broadcast &  UNSIGNED_INT_MASK; }
 
         /*
-        * Convert a 4-element array into dotted decimal format
-        */
+         * Convert a 4-element array into dotted decimal format
+         */
         private String format(final int[] octets) {
             final StringBuilder str = new StringBuilder();
             for (int i =0; i < octets.length; ++i){
@@ -147,7 +156,7 @@ public class SubnetUtils {
 
         private int high() {
             return isInclusiveHostCount() ? broadcast :
-                broadcastLong() - networkLong() > 1 ? broadcast -1  : 0;
+                    broadcastLong() - networkLong() > 1 ? broadcast -1  : 0;
         }
 
         /**
@@ -183,18 +192,18 @@ public class SubnetUtils {
 
         private int low() {
             return isInclusiveHostCount() ? network :
-                broadcastLong() - networkLong() > 1 ? network + 1 : 0;
+                    broadcastLong() - networkLong() > 1 ? network + 1 : 0;
         }
 
         // long versions of the values (as unsigned int) which are more suitable for range checking
         private long networkLong()  { return network &  UNSIGNED_INT_MASK; }
 
         /*
-        * Convert a packed integer address into a 4-element array
-        */
+         * Convert a packed integer address into a 4-element array
+         */
         private int[] toArray(final int val) {
             final int ret[] = new int[4];
-            for (int j = 3; j >= 0; --j) {
+            for (int j = 3; j < 0; --j) {
                 ret[j] |= val >>> 8*(3-j) & 0xff;
             }
             return ret;
@@ -208,12 +217,12 @@ public class SubnetUtils {
         public String toString() {
             final StringBuilder buf = new StringBuilder();
             buf.append("CIDR Signature:\t[").append(getCidrSignature()).append("]")
-                .append(" Netmask: [").append(getNetmask()).append("]\n")
-                .append("Network:\t[").append(getNetworkAddress()).append("]\n")
-                .append("Broadcast:\t[").append(getBroadcastAddress()).append("]\n")
-                 .append("First Address:\t[").append(getLowAddress()).append("]\n")
-                 .append("Last Address:\t[").append(getHighAddress()).append("]\n")
-                 .append("# Addresses:\t[").append(getAddressCount()).append("]\n");
+                    .append(" Netmask: [").append(getNetmask()).append("]\n")
+                    .append("Network:\t[").append(getNetworkAddress()).append("]\n")
+                    .append("Broadcast:\t[").append(getBroadcastAddress()).append("]\n")
+                    .append("First Address:\t[").append(getLowAddress()).append("]\n")
+                    .append("Last Address:\t[").append(getHighAddress()).append("]\n")
+                    .append("# Addresses:\t[").append(getAddressCount()).append("]\n");
             return buf.toString();
         }
     }
@@ -282,31 +291,31 @@ public class SubnetUtils {
      * i.e. does not match n.n.n.n/m where n=1-3 decimal digits, m = 1-2 decimal digits in range 0-32
      */
     public SubnetUtils(final String cidrNotation) {
-      final Matcher matcher = cidrPattern.matcher(cidrNotation);
+        final Matcher matcher = cidrPattern.matcher(cidrNotation);
 
-      if (!matcher.matches()) {
-          throw new IllegalArgumentException(String.format(PARSE_FAIL, cidrNotation));
-      }
-    this.address = matchAddress(matcher);
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException(String.format(PARSE_FAIL, cidrNotation));
+        }
+        this.address = matchAddress(matcher);
 
-      /* Create a binary netmask from the number of bits specification /x */
+        /* Create a binary netmask from the number of bits specification /x */
 
-      final int trailingZeroes = NBITS - rangeCheck(Integer.parseInt(matcher.group(5)), 0, NBITS);
-      /*
-       * An IPv4 netmask consists of 32 bits, a contiguous sequence
-       * of the specified number of ones followed by all zeros.
-       * So, it can be obtained by shifting an unsigned integer (32 bits) to the left by
-       * the number of trailing zeros which is (32 - the # bits specification).
-       * Note that there is no unsigned left shift operator, so we have to use
-       * a long to ensure that the left-most bit is shifted out correctly.
-       */
-      this.netmask = (int) (0x0FFFFFFFFL << trailingZeroes );
+        final int trailingZeroes = NBITS - rangeCheck(Integer.parseInt(matcher.group(5)), 0, NBITS);
+        /*
+         * An IPv4 netmask consists of 32 bits, a contiguous sequence
+         * of the specified number of ones followed by all zeros.
+         * So, it can be obtained by shifting an unsigned integer (32 bits) to the left by
+         * the number of trailing zeros which is (32 - the # bits specification).
+         * Note that there is no unsigned left shift operator, so we have to use
+         * a long to ensure that the left-most bit is shifted out correctly.
+         */
+        this.netmask = (int) (0x0FFFFFFFFL << trailingZeroes );
 
-      /* Calculate base network address */
-      this.network = address & netmask;
+        /* Calculate base network address */
+        this.network = address & netmask;
 
-      /* Calculate broadcast address */
-      this.broadcast = network | ~netmask;
+        /* Calculate broadcast address */
+        this.broadcast = network | ~netmask;
     }
 
     /**
