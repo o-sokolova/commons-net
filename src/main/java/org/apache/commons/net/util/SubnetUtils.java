@@ -387,6 +387,4 @@ public class SubnetUtils {
     public void setInclusiveHostCount(final boolean inclusiveHostCount) {
         this.inclusiveHostCount = inclusiveHostCount;
     }
-
-
 }
